@@ -10,14 +10,15 @@ public partial class NovoProduto : ContentPage
 		InitializeComponent();
 	}
 
-    private async Task ToolbarItem_Clicked(object sender, EventArgs e)
+    private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
 		try 
 		{
+			Produto produto_anexado = BindingContext as Produto;
 
 			Produto p = new Produto
 			{
-
+				Id = produto_anexado.Id,
 				Descricao = txt_descricao.Text,
 				Quantidade = Convert.ToDouble(txt_quantidade.Text),
 				Preco = Convert.ToDouble(txt_preco.Text)
@@ -25,7 +26,8 @@ public partial class NovoProduto : ContentPage
 			};
 
 			await App.Db.insert(p);
-			await DisplayAlertAsync("Sucesso!", "Registro Inserido", "Ok");
+			await DisplayAlertAsync("Sucesso!", "Registro Atualizado", "Ok");
+			await Navigation.PopAsync();
 
 		} catch (Exception ex)
 		{
