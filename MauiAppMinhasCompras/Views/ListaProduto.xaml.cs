@@ -71,7 +71,7 @@ public partial class ListaProduto : ContentPage
 		DisplayAlertAsync("total dos produtos", msg, "ok");
     }
 
-    private async Task MenuItem_Clicked(object sender, EventArgs e)
+    private async void MenuItem_Clicked(object sender, EventArgs e)
     {
         try
         {
