@@ -50,6 +50,8 @@ public partial class ListaProduto : ContentPage
         {
             string q = e.NewTextValue;
 
+            lst_produtos.IsRefreshing = true;
+
             Lista.Clear();
 
             List<Produto> tmp = await App.Db.search(q);
@@ -59,6 +61,10 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             await DisplayAlertAsync("Ops", ex.Message, "Ok");
+        }
+        finally
+        {
+            lst_produtos.IsRefreshing = false;
         }
     }
 
@@ -79,7 +85,7 @@ public partial class ListaProduto : ContentPage
 
             Produto p = selecionado.BindingContext as Produto;
 
-            bool confirm = await DisplayAlertAsync("Tem certeza?", "Remover Produto", "sim", "não");
+            bool confirm = await DisplayAlertAsync("Tem certeza?", $"Remover Produto", "sim", "não");
 
             if(confirm)
             {
@@ -104,6 +110,26 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             DisplayAlertAsync("Ops", ex.Message, "Ok");
+        }
+    }
+
+    private async void lst_produtos_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            Lista.Clear();
+
+            List<Produto> tmp = await App.Db.GetAll();
+
+            tmp.ForEach(i => Lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Ops", ex.Message, "Ok");
+
+        } finally
+        {
+            lst_produtos.IsRefreshing = false;
         }
     }
 }
