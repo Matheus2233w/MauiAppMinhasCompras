@@ -9,7 +9,10 @@ namespace MauiAppMinhasCompras.Views;
 public partial class ListaProduto : ContentPage
 {
 	ObservableCollection<Produto> Lista = new ObservableCollection<Produto>();
-	public ListaProduto()
+
+    public static List<Produto> ItemsSource { get; internal set; }
+
+    public ListaProduto()
 	{
 		InitializeComponent();
 

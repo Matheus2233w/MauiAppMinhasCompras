@@ -20,9 +20,9 @@ public partial class NovoProduto : ContentPage
 				
 				Descricao = txt_descricao.Text,
 				Quantidade = Convert.ToDouble(txt_quantidade.Text),
-				Preco = Convert.ToDouble(txt_preco.Text)
-
-			};
+				Preco = Convert.ToDouble(txt_preco.Text),
+                Categoria = pck_categoria.SelectedItem.ToString()
+            };
 
 			await App.Db.insert(p);
 			await DisplayAlertAsync("Sucesso!", "Registro Atualizado", "Ok");
@@ -32,5 +32,11 @@ public partial class NovoProduto : ContentPage
 		{
 			await DisplayAlertAsync("Ops", ex.Message, "Ok");
 		}
+
+
     }
+
+
+
+
 }
