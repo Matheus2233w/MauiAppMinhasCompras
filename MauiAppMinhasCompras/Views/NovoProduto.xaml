@@ -24,16 +24,21 @@
         <Label Text="Preço Unitário:" />
         <Entry x:Name="txt_preco" Keyboard="Numeric" />
 
-        <Label Text="Categoria" FontAttributes="Bold" />
-        <Picker x:Name="pck_categoria" Title="Selecione uma categoria">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Alimentos</x:String>
-                    <x:String>Higiene</x:String>
-                    <x:String>Limpeza</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+        <HorizontalStackLayout Spacing="10" Padding="10" HorizontalOptions="Center">
+    <Picker x:Name="pck_categoria" Title="Filtrar Categoria" WidthRequest="200"
+            SelectedIndexChanged="pck_filtro_SelectedIndexChanged">
+        <Picker.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Todos</x:String>
+                <x:String>Alimentos</x:String>
+                <x:String>Higiene</x:String>
+                <x:String>Limpeza</x:String>
+            </x:Array>
+        </Picker.ItemsSource>
+    </Picker>
+
+    <Button Text="Ver Soma" Clicked="btn_Somar_Clicked" BackgroundColor="Green" />
+</HorizontalStackLayout>
 
     </VerticalStackLayout>
 </ContentPage>

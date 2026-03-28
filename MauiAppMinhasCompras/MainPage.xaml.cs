@@ -23,6 +23,10 @@ namespace MauiAppMinhasCompras
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+
+
+
+
         private void ExibirRelatorioPorCategoria()
         {
             // 1. Pegamos a lista que já está na tela
